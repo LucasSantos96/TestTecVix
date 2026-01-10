@@ -1,7 +1,7 @@
 import { Response } from "express";
 import { CustomRequest } from "../types/custom";
 import { BrandMasterService } from "../services/BrandMasterService";
-import { user } from "@prisma/client";
+import { User } from "@prisma/client";
 import { STATUS_CODE } from "../constants/statusCode";
 
 export class BrandMasterController {
@@ -24,7 +24,7 @@ export class BrandMasterController {
   }
 
   async createNewBrandMaster(req: CustomRequest<unknown>, res: Response) {
-    const user = req.user as user;
+    const user = req.user as User;
     const result = await this.brandMasterService.createNewBrandMaster(
       req.body,
       user,
@@ -33,7 +33,7 @@ export class BrandMasterController {
   }
 
   async updateBrandMaster(req: CustomRequest<unknown>, res: Response) {
-    const user = req.user as user;
+    const user = req.user as User;
     const { idBrandMaster } = req.params;
     const result = await this.brandMasterService.updateBrandMaster(
       Number(idBrandMaster),
@@ -44,7 +44,7 @@ export class BrandMasterController {
   }
 
   async deleteBrandMaster(req: CustomRequest<unknown>, res: Response) {
-    const user = req.user as user;
+    const user = req.user as User;
     const { idBrandMaster } = req.params;
     const result = await this.brandMasterService.deleteBrandMaster(
       Number(idBrandMaster),

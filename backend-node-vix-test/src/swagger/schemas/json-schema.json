@@ -197,7 +197,7 @@
         "users": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/user"
+            "$ref": "#/definitions/User"
           }
         }
       }
@@ -280,7 +280,7 @@
         }
       }
     },
-    "user": {
+    "User": {
       "type": "object",
       "properties": {
         "idUser": {
@@ -367,7 +367,7 @@
       "$ref": "#/definitions/vM"
     },
     "user": {
-      "$ref": "#/definitions/user"
+      "$ref": "#/definitions/User"
     }
   }
 }

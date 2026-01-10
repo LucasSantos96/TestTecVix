@@ -1,4 +1,5 @@
-import { brandMaster, user } from "@prisma/client";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { brandMaster, User } from "@prisma/client";
 import { BrandMasterModel } from "../models/BrandMasterModel";
 import { querySchema } from "../types/validations/Queries/queryListAll";
 import {
@@ -26,7 +27,7 @@ export class BrandMasterService {
     return this.brandMasterModel.listAll(validQuery);
   }
 
-  async createNewBrandMaster(data: TBrandMaster, user: user) {
+  async createNewBrandMaster(data: TBrandMaster, user: User) {
     const validData = brandMasterSchema.parse(data);
 
     if (validData.contract) {
@@ -47,7 +48,7 @@ export class BrandMasterService {
     validData,
     idBrandMaster,
   }: {
-    user: user;
+    user: User;
     validData: TBrandMaster;
     idBrandMaster: number;
     oldBrandMaster: brandMaster;
@@ -58,7 +59,7 @@ export class BrandMasterService {
     );
   }
 
-  async updateBrandMaster(idBrandMaster: number, data: unknown, user: user) {
+  async updateBrandMaster(idBrandMaster: number, data: unknown, user: User) {
     const validData = brandMasterSchema.parse(data);
     const oldBrandMaster = await this.brandMasterModel.getById(idBrandMaster);
     if (!oldBrandMaster) {
@@ -92,7 +93,7 @@ export class BrandMasterService {
     });
   }
 
-  async deleteBrandMaster(idBrandMaster: number, user: user) {
+  async deleteBrandMaster(idBrandMaster: number, user: User) {
     const oldBrandMaster = await this.brandMasterModel.getById(idBrandMaster);
     if (!oldBrandMaster) {
       throw new AppError(

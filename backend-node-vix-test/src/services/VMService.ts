@@ -1,4 +1,5 @@
-import { user, vM } from "@prisma/client";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { User, vM } from "@prisma/client";
 import { VMModel } from "../models/VMModel";
 import { TVMCreate, vMCreatedSchema } from "../types/validations/VM/createVM";
 import { AppError } from "../errors/AppError";
@@ -16,14 +17,14 @@ export class VMService {
     return this.vMModel.getById(idVM);
   }
 
-  async listAll(query: unknown, user: user) {
+  async listAll(query: unknown, user: User) {
     const validQuery = vmListAllSchema.parse(query);
     return this.vMModel.listAll({
       query: validQuery,
     });
   }
 
-  async createNewVM(data: unknown, user: user) {
+  async createNewVM(data: unknown, user: User) {
     const validateData = vMCreatedSchema.parse(data);
 
     const createdVM = await this.vMModel.createNewVM({
@@ -34,7 +35,7 @@ export class VMService {
     return createdVM;
   }
 
-  async updateVM(idVM: number, data: unknown, user: user) {
+  async updateVM(idVM: number, data: unknown, user: User) {
     const validateDataSchema = vMUpdatedSchema.parse(data);
     const oldVM = await this.getById(idVM);
 
@@ -46,7 +47,7 @@ export class VMService {
     return updatedVM;
   }
 
-  async deleteVM(idVM: number, user: user) {
+  async deleteVM(idVM: number, user: User) {
     const oldVM = await this.getById(idVM);
     if (!oldVM) {
       throw new AppError(ERROR_MESSAGE.NOT_FOUND, STATUS_CODE.NOT_FOUND);

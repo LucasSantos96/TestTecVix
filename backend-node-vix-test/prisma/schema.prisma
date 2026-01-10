@@ -48,7 +48,7 @@ model brandMaster {
   termsOfUse    String?
   privacyPolicy String?
   vM            vM[]
-  users         user[]
+  users         User[]
 }
 
 model vM {
@@ -69,7 +69,7 @@ model vM {
   @@index([idBrandMaster], map: "vM_idBrandMaster_fkey")
 }
 
-model user {
+model User {
   idUser        String    @id @default(uuid())
   username      String
   password      String
@@ -86,6 +86,7 @@ model user {
   brandMaster brandMaster? @relation(fields: [idBrandMaster], references: [idBrandMaster])
 
   @@index([idBrandMaster], map: "user_idBrandMaster_fkey")
+  @@map("user")
 }
 
 enum EVMStatus {
