@@ -46,6 +46,8 @@ Table vM {
   hasBackup Boolean [default: false]
   idBrandMaster Int
   status EVMStatus
+  pass String [not null, default: 'admin123']
+  location ETaskLocation [not null, default: 'BRASIL']
   createdAt DateTime [default: `now()`]
   updatedAt DateTime [default: `now()`]
   deletedAt DateTime
@@ -67,6 +69,12 @@ Table user {
   updatedAt DateTime [default: `now()`]
   deletedAt DateTime
   brandMaster brandMaster
+}
+
+Enum ETaskLocation {
+  BRASIL
+  USA
+  EUROPE
 }
 
 Enum EVMStatus {

@@ -241,6 +241,19 @@
             "PAUSED"
           ]
         },
+        "pass": {
+          "type": "string",
+          "default": "admin123"
+        },
+        "location": {
+          "type": "string",
+          "default": "BRASIL",
+          "enum": [
+            "BRASIL",
+            "USA",
+            "EUROPE"
+          ]
+        },
         "createdAt": {
           "type": [
             "string",
