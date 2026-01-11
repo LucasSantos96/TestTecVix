@@ -14,7 +14,13 @@ app.use(
   cors({
     origin: "http://localhost:3000",
     credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization", "idbrandmaster"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "idbrandmaster",
+      "access-control-allow-origin",
+      "x-sign",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   }),
 );
