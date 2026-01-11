@@ -19,6 +19,8 @@ export const vMCreatedSchema = z.object({
   idBrandMaster: z.number().nullable().optional(),
   status: EVMStatus.optional(),
   os: z.string().optional(),
+  location: z.enum(["BRASIL", "USA", "EUROPE"]),
+  pass: z.string().min(6),
 });
 
 export type TVMCreate = z.infer<typeof vMCreatedSchema>;
