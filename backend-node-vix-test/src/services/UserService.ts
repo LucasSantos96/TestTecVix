@@ -15,7 +15,7 @@ export class UserService {
 
   async findAll() {
     return await prisma.user.findMany({
-      where: { deletedAt: null }, // Apenas usuários não excluídos
+      where: { deletedAt: null },
       select: {
         idUser: true,
         username: true,

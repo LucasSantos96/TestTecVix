@@ -41,7 +41,7 @@ export class UserController {
     try {
       const id = this.normalizeObjectName(req.params.id);
       await this.userService.delete(id);
-      return res.status(204).send(); // 204 No Content é o padrão para deletes bem-sucedidos
+      return res.status(204).send(); 
     } catch (error: unknown) {
       console.error(error);
       return res.status(400).json({ message: "Error deleting user" });
