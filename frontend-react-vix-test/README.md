@@ -1,103 +1,166 @@
-# Frontend React
+# Relatório de Entrega
 
-## Getting started
+## 📝 Observações do Desenvolvedor
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+> Gostaria de informar que, apesar de ter cumprido a vasta maioria dos requisitos técnicos solicitados, o módulo de Cadastro de Funcionários não foi finalizado em sua totalidade (faltando a migração de alguns campos específicos de perfil no banco de dados) devido ao esgotamento do prazo de entrega.
+> 
+> 
+> No entanto, foi extremamente gratificante realizar este teste. Tive a oportunidade de aplicar conhecimentos em **Zustand**, **Prisma**, **Material UI (custom sx styling)** e **Clean Architecture** no Node.js. Aprendi muito durante o processo e estou à total disposição para "trocar uma ideia" em uma conversa técnica, onde poderei explicar melhor minhas decisões de arquitetura e como eu finalizaria os pontos pendentes.
+> 
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## 1. Infraestrutura e Setup Inicial
 
-## Add your files
+- **Environment Setup**: Configuração completa dos ambientes de Frontend e Backend através de arquivos `.env`, garantindo a comunicação correta com a API e o banco de dados.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## 2. Autenticação e Segurança (JWT)
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/vituax1/backend-node-api.git
-git branch -M main
-git push -uf origin main
-```
+- **Auth System**: Implementação de um sistema de login e registro funcional com autenticação via **Token JWT**.
+- **Route Guarding**: Proteção de rotas privadas, garantindo que apenas usuários autenticados acessem o dashboard, enquanto as rotas de login/register permanecem públicas.
+- **Password Hashing**: Integração do `bcryptjs` no backend para garantir que as senhas dos usuários e das VMs sejam armazenadas de forma segura.
 
-## Integrate with your tools
+## 3. Gestão de Máquinas Virtuais (VMs)
 
-- [ ] [Set up project integrations](https://gitlab.com/vituax1/backend-node-api/-/settings/integrations)
+- **CRUD e Ciclo de Vida**: Implementação das funções de `start`, `pause`, `stop` e `edit` das VMs, tanto em formato de Card quanto em Tabela.
+- **Dashboard Visual**: Criação de gráficos (mocados) para monitoramento de CPU e Memória, elevando a qualidade visual da Home.
+- **Filtros Avançados**: Sistema de busca por nome, status, BrandMaster e a funcionalidade exclusiva de "Apenas minhas VMs", que filtra recursos baseado na empresa do usuário logado.
+- **Banco de Dados**: Atualização do Schema Prisma para incluir campos críticos como `location` (ETaskLocation), `hasBackup` e senhas de acesso.
 
-## Collaborate with your team
+## 4. Módulos Administrativos (White Label & MSP)
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+- **Cadastro de MSP**: Desenvolvimento de um fluxo de cadastro em duas etapas (Step-by-Step) com integração de busca por CEP/CNPJ e filtros de status (POC).
+- **Cadastro de Funcionários**: Criação da interface de gestão de colaboradores baseada no design fornecido, incluindo formulários estilizados e uma tabela de usuários com badges de permissão e status.
 
 ---
 
-# Editing this README
+### ⬇️ Vou deixar a baixo o checklist com as tasks feitas ⬇️
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+**✅ Tarefas do Desafio**
 
-## Suggestions for a good README
+**📋 Configuração Inicial**
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+- [x]  Criar arquivo `.env` baseado no `.env.example` (backend)
+- [x]  Criar arquivo `.env` baseado no `.env.exemple` (frontend)
 
-## Name
+---
 
-Choose a self-explaining name for your project.
+**🔐 Autenticação e Autorização**
 
-## Description
+- [x]  Implementar as rotas de CRUD para usuários
+- [x]  Implementar rota de login do usuário
+- [x]  Implementar tela de login `/login`
+- [x]  Implementar rota de register do usuário
+- [x]  Implementar tela de register `/register`
+- [x]  Implementar autenticação com token JWT
+- [x]  Proteger as rotas da aplicação (exceto login e register) para que somente usuários logados possam acessar
+- [x]  Adicionar credenciais de usuários de teste no README e/ou `.env.example`
 
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+---
 
-## Badges
+**🗄️ Updates no Banco de Dados**
 
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+- [x]  Adicionar coluna `pass` na tabela `VM` (senha da VM, respeitando regras de segurança)
+- [x]  Adicionar coluna `location` do tipo `ETaskLocation` na tabela `VM`
+- [x]  Adicionar coluna `hasBackup` na tabela `VM`
 
-## Visuals
+---
 
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+**🏠 Funcionalidades da Home Page**
 
-## Installation
+**VM Card List:**
 
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+- [x]  Implementar a função de **start** da VM
+- [x]  Implementar a função de **pause** da VM
+- [x]  Implementar os gráficos (mocados) de **Uso de CPU**
+- [x]  Implementar os gráficos (mocados) de **Uso de Memória**
 
-## Usage
+---
 
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+**➕ Criação de VM**
 
-## Support
+- [x]  Implementar a lista dropdown dos **sistemas operacionais**
+- [x]  Implementar corretamente a **criação de uma VM**
+- [x]  Possibilitar a aceitação de **configurações dos cards de sugestão**
 
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+---
 
-## Roadmap
+**💾 Gerenciamento de VMs (My VMs)**
 
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+**Filtros:**
 
-## Contributing
+- [x]  Implementar filtro de **pesquisa** (busca por nome)
+- [x]  Implementar filtro por **status da VM**
+- [x]  Implementar filtro por **MSP/BrandMaster**
+- [x]  Implementar filtro **"Apenas minhas VMs"** (VMs exclusivas da mesma BrandMaster do usuário logado)
 
-State if you are open to contributions and what your requirements are for accepting them.
+**Ações:**
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+- [x]  Possibilitar **stop/start** da VM pela tabela
+- [x]  Possibilitar **stop/start** da VM pelo modal de edição
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+**Modal de Edição:**
 
-## Authors and acknowledgment
+- [x]  Trazer corretamente as **informações da VM** no modal
+- [x]  Possibilitar editar: **senha da VM**
+- [x]  Possibilitar editar: **nome da VM**
+- [x]  Possibilitar editar: **vCPU**
+- [x]  Possibilitar editar: **Memória**
+- [x]  Possibilitar editar: **Disco**
+- [x]  Possibilitar editar: **habilitar/desabilitar backup**
 
-Show your appreciation to those who have contributed to the project.
+**Exclusão:**
 
-## License
+- [x]  Possibilitar **deletar VM** (somente usuários tipo `admin` podem deletar)
 
-For open source projects, say how it is licensed.
+---
 
-## Project status
+**🏢 Cadastro de MSP**
 
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+**Referências visuais**: `screenshots/CadastroDeMSPStep01.png` e `screenshots/CadastroDeMSPStep02.png`
+
+- [x]  Implementar componente para **cadastro de MSP em 2 etapas**
+- [x]  Possibilitar **criar um novo MSP**
+- [x]  Possibilitar **editar um MSP já existente**
+- [x]  Adicionar campos de **endereço** (ou puxar pelo CEP e/ou CNPJ)
+- [x]  Implementar filtros de **search**
+- [x]  Implementar flag de **"Mostrar somente os que estão em POC"**
+
+---
+
+**👥 Cadastro de Funcionários**
+
+**Referência visual**: `screenshots/CadastroDeFuncionarios.png`
+
+- [x]  Implementar a tela de **cadastro de funcionários** seguindo a imagem de referência
+- [x]  Atentar para a **responsividade**
+- [x]  Considerar as **traduções** (i18n)
+
+---
+
+**🎨 Configuração White Label**
+
+- [ ]  Permitir que a **logo da empresa** do usuário seja alterada
+- [ ]  Somente usuários **admin** podem realizar essa alteração
+
+---
+
+**👤 Configuração de Perfil e Notificações**
+
+- [ ]  Permitir a edição das **informações de contato**
+- [ ]  Permitir a edição da **senha**
+- [ ]  Permitir a edição da **imagem de perfil** do usuário logado
+
+---
+
+**🌟 Tarefas Opcionais/Diferenciais**
+
+**Testes**
+
+- [ ]  Implementar **testes de snapshot**
+- [ ]  Implementar **testes unitários**
+- [ ]  Implementar **testes de integração**
+- [ ]  Implementar **testes E2E (end-to-end)**
+
+**Documentação Swagger**
+
+- [ ]  Fazer a **documentação Swagger da API**
+- [ ]  Verificar a rota `/docs` na API para visualizar a documentação
